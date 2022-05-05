@@ -13,7 +13,7 @@ print("また、!ではじめるとテキストを反転できます。")
 print("----------------------------------------------------")
 text = input("> ")
 if text.startswith("!"):
-    text = reversed(text[1:])
+    text = str(reversed(text[1:]))
 font = ImageFont.truetype("./JF-Dot-K12.ttf", 12)
 
 img = Image.new("RGB", (12 * len(text), 12))
