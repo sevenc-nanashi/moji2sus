@@ -13,10 +13,14 @@ print("また、!ではじめるとテキストを反転できます。")
 print("----------------------------------------------------")
 text = input("> ")
 if text.startswith("!"):
-    text = str(reversed(text[1:]))
+    reverse = True
+    text = text[1:]
+else:
+    reverse = False
 font = ImageFont.truetype("./JF-Dot-K12.ttf", 12)
 
-img = Image.new("RGB", (12 * len(text), 12))
+length = len(text.replace("[", "").replace("]", ""))
+img = Image.new("RGB", (12 * length, 12))
 draw = ImageDraw.Draw(img)
 
 with open("./base.sus", "r") as f:
@@ -35,7 +39,10 @@ for char in text:
         gold = False
         continue
     i += 1
-    x = 12 * i + 6
+    if reverse:
+        x = 12 * (length - i - 2) + 6
+    else:
+        x = 12 * i + 6
     x -= font.getsize(char)[0] / 2
     if gold:
         fill = (255, 255, 0)
